@@ -1,17 +1,21 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
+import { useState } from 'react';
 import * as Styles from './index.styles';
-import Track from 'components/Track';
-import Content from 'components/Content';
+import Player from 'components/Player';
+import AppContext from 'context/appContext';
 
+/**
+ * Main Component where the app is being rendered
+ */
 function App() {
+  const [isPlaying, setIsPlaying] = useState(false); // TODO: change this to a reducer
   return (
-    <div css={Styles.wrapper}>
-      <div css={Styles.background} />
-      <div css={Styles.content}>
-        <Track />
-        <Content />
-      </div>
+    <div css={Styles.Wrapper}>
+      <div css={Styles.Background} />
+      <AppContext.Provider value={{ isPlaying, setIsPlaying }}>
+        <Player />
+      </AppContext.Provider>
     </div>
   );
 }
