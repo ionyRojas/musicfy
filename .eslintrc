@@ -1,0 +1,51 @@
+{
+  "extends": [
+    "prettier",
+    "prettier/standard",
+    "prettier/react",
+    "plugin:react/recommended"
+  ],
+  "plugins": ["prettier", "react", "emotion"],
+  "rules": {
+    "prettier/prettier": "error",
+    "import/no-duplicates": "off",
+    "import/no-named-as-default": "off",
+    "max-len": "off",
+    "linebreak-style": "off",
+    "react/jsx-filename-extension": 0,
+    "import/prefer-default-export": "off",
+    "react/forbid-prop-types": "off",
+    "react/prop-types": 1,
+    "react/no-danger": "warn",
+    "react/require-default-props": "warn",
+    "react/no-array-index-key": "warn",
+    "react/display-name": "off",
+    "no-use-before-define": 0,
+    "no-debugger": "warn",
+    "no-console": "warn",
+    "emotion/jsx-import": "error",
+    "emotion/no-vanilla": "error",
+    "emotion/import-from-emotion": "error",
+    "emotion/styled-import": "error",
+    "no-unused-vars": "warn",
+    "react/self-closing-comp": ["error", {
+      "component": true,
+      "html": true
+    }]
+  },
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true
+  },
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    },
+    "import/resolver": {
+      "node": {
+        "paths": ["src"]
+      }
+    }
+  }
+}
