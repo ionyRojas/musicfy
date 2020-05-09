@@ -18,14 +18,18 @@ const GlobalStyles = () => (
         margin: 0;
         background: white;
         min-height: 100%;
-        font-family: Helvetica, Arial, sans-serif;
         box-sizing: border-box;
+        font-family: Helvetica, Arial;
       }
 
       *,
       *::before,
       *::after {
         box-sizing: inherit;
+      }
+
+      p {
+        line-height: normal;
       }
     `}
   />

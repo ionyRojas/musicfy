@@ -1,3 +1,9 @@
+/**
+ * This function take a hexadecimal color and a alpha value and transform in a rgba value
+ * @param  {string} hex the Hexadecimal color to be transformed to RGBA
+ * @param  {number} alpha=1 Alpha value between o and 1 to be applyed to the hex Color
+ * @return {string} rgba value
+ */
 export const hexToRgba = (hex, alpha = 1) => {
   if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
     const hexList = hex.substring(1).split('');
