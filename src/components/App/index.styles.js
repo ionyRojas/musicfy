@@ -2,9 +2,17 @@ import { css } from '@emotion/core';
 import { colors } from 'styles/colors';
 import { hexToRgba } from 'utils/hexToRgba';
 
+export const wrapper = css({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '100vh',
+  position: 'relative',
+});
+
 export const background = css({
-  backgroundColor: `${colors.blue}`,
-  backgroundImage: `linear-gradient(160deg, ${colors.blue} 0%, ${colors.green120} 100%)`,
+  backgroundColor: `${colors.blue20}`,
+  backgroundImage: `linear-gradient(160deg, ${colors.blue20} 0%, ${colors.green120} 100%)`,
   position: 'fixed',
   top: 0,
   right: 0,
@@ -29,4 +37,7 @@ export const background = css({
 export const content = css({
   zIndex: 2,
   position: 'relative',
+  width: '90%',
+  height: 100,
+  transform: 'translateY(50%)',
 });

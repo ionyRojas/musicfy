@@ -1,14 +1,18 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import React from 'react';
 import * as Styles from './index.styles';
+import Track from 'components/Track';
+import Content from 'components/Content';
 
 function App() {
   return (
-    <React.Fragment>
+    <div css={Styles.wrapper}>
       <div css={Styles.background} />
-      <div css={Styles.content}>content here</div>
-    </React.Fragment>
+      <div css={Styles.content}>
+        <Track />
+        <Content />
+      </div>
+    </div>
   );
 }
 
