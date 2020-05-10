@@ -1,4 +1,4 @@
-import { css } from '@emotion/core';
+import { css, keyframes } from '@emotion/core';
 import { colors } from 'styles/colors';
 
 export const Wrapper = css({
@@ -22,7 +22,6 @@ export const Art = (isPlaying) =>
     boxShadow: isPlaying
       ? '0 0 0 4px #fff7f7, 0 30px 50px -15px #afb7c1'
       : `0 0 0 10px ${colors.white}`,
-    // backgroundColor: colors.white,
     backgroundImage: 'linear-gradient(160deg,#0093E9 0%,#80D0C7 100%)',
     borderRadius: '50%',
     overflow: 'hidden',
@@ -49,4 +48,21 @@ export const Control = css({
     color: colors.white,
     backgroundColor: colors.blue100,
   },
+});
+
+export const ImageArt = css({
+  width: '100%',
+});
+
+const rotateAlbumArt = keyframes({
+  '0%': {
+    transform: 'rotateZ(0)',
+  },
+  '100%': {
+    transform: 'rotateZ(360deg)',
+  },
+});
+
+export const RotateImage = css({
+  animation: `${rotateAlbumArt} 3s linear 0s infinite forwards`,
 });

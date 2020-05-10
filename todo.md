@@ -1,1 +1,2 @@
-- [] verify the space between the arrow right(forward) and the end of component
+- [ ] verify the space between the arrow right(forward) and the end of component
+- [ ]

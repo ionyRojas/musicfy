@@ -9,11 +9,15 @@ import AppContext from 'context/appContext';
  * and the time information about the song
  */
 function Track() {
-  const { isPlaying } = useContext(AppContext);
+  const { appState, TRACK_STATES } = useContext(AppContext);
+  const { currentTrack } = appState;
+  console.log('--- appState ---', appState);
+  const isPlaying = appState.trackState === TRACK_STATES.PLAYING;
+
   return (
     <div css={[Styles.Wrapper, isPlaying && Styles.Active]}>
-      <p css={Styles.AlbumName}>Amanecer</p>
-      <p css={Styles.TrackName}>Bomba Estereo - To My Love</p>
+      <p css={Styles.AlbumName}>{currentTrack.albums}</p>
+      <p css={Styles.TrackName}>{currentTrack.name}</p>
       <div css={Styles.TrackTime}>
         <span css={Styles.Time}>00:31</span>
         <span css={Styles.Time}>04:13</span>
