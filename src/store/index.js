@@ -63,7 +63,7 @@ export function appReducer(state, action) {
 
 /**
  * api with the actions to change the global state
- * @param  {function} dispatch awrapper of actions to dispatch reducers
+ * @param  {function} dispatch a wrapper of actions to dispatch reducers
  * @return {function}
  */
 export const actions = (dispatch) => ({

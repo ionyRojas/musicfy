@@ -62,6 +62,7 @@ function Player() {
         onPause={handleOnPause}
         onCanPlay={handleOnCanPlay}
         onEnded={handleOnEnded}
+        onError={() => {}}
       />
       <Track audioEl={audioEl} />
       <Content audioEl={audioEl} />
