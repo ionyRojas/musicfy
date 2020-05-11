@@ -1,5 +1,6 @@
 /**
- * fetch the songs from the url
+ * fetch the songs from the Repo
+ * @return {array} data from the fetched url - containt the tracks
  */
 export const getTracks = async () => {
   const results = await fetch(
