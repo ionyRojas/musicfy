@@ -18,46 +18,45 @@ import AppContext from 'context/appContext';
 function Content({ audioEl }) {
   const { appState, TRACK_STATES, actions } = useContext(AppContext);
   const { trackPosition, tracks, trackState, currentTrack } = appState;
-  const { setTrackPosition } = actions;
+  const { setTrackPosition, setAutoPlay, pause, play } = actions;
   const isPlaying = trackState === TRACK_STATES.PLAYING;
+  const isBuffering = trackState === TRACK_STATES.LOADING;
 
-  /**
-   * @param  {} (
-   */
   const handlePlayButton = useCallback(() => {
+    if (isBuffering) return;
+
     const { current: audio } = audioEl;
     if (audio.paused) {
       audio.play();
+      play();
     } else {
       audio.pause();
+      pause();
     }
   }, [audioEl]);
 
-  /**
-   * @param  {} (
-   */
   const handleBackwardButton = useCallback(() => {
     const nextTrackPosition = trackPosition - 1;
 
     setTrackPosition(
       nextTrackPosition < 0 ? tracks.length - 1 : nextTrackPosition,
     );
+    setAutoPlay(true);
   }, [tracks, trackPosition]);
 
-  /**
-   * @param  {} (
-   */
   const handleForwardButton = useCallback(() => {
     const nextTrackPosition = trackPosition + 1;
 
     setTrackPosition(
       nextTrackPosition >= tracks.length ? 0 : nextTrackPosition,
     );
+    setAutoPlay(true);
   }, [tracks, trackPosition]);
 
   return (
     <div css={Styles.Wrapper}>
       <span css={Styles.Art(isPlaying)}>
+        {isBuffering && <p css={Styles.BufferText}>Buffering...</p>}
         <img
           css={[Styles.ImageArt, isPlaying && Styles.RotateImage]}
           src={currentTrack.imageUrl}

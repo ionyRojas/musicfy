@@ -2,51 +2,63 @@ import { css, keyframes } from '@emotion/core';
 import { colors } from 'styles/colors';
 
 export const Wrapper = css({
-  position: 'relative',
-  height: '100%',
   backgroundColor: colors.white,
   boxShadow: `0 30px 80px ${colors.grey20}`,
   display: 'flex',
-  justifyContent: 'space-between',
   flexDirection: 'column',
+  height: '100%',
+  justifyContent: 'space-between',
+  position: 'relative',
 });
 
 export const Art = (isPlaying) =>
   css({
-    position: 'absolute',
-    transform: `translateY(${isPlaying ? '-60px' : '-40px'})`,
-    width: 115,
-    height: 115,
-    marginLeft: 40,
-    transition: '0.3s ease all',
+    backgroundImage: 'linear-gradient(160deg,#0093E9 0%,#80D0C7 100%)',
+    borderRadius: '50%',
     boxShadow: isPlaying
       ? '0 0 0 4px #fff7f7, 0 30px 50px -15px #afb7c1'
       : `0 0 0 10px ${colors.white}`,
-    backgroundImage: 'linear-gradient(160deg,#0093E9 0%,#80D0C7 100%)',
-    borderRadius: '50%',
+    height: 115,
+    marginLeft: 40,
     overflow: 'hidden',
+    position: 'absolute',
+    transform: `translateY(${isPlaying ? '-60px' : '-40px'})`,
+    transition: '0.3s ease all',
+    width: 115,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   });
 
-export const ArtActive = css({});
+export const BufferText = css({
+  position: 'absolute',
+  fontSize: 13,
+  backgroundColor: 'rgba(255, 255, 255, 0.19)',
+  width: '100%',
+  textAlign: 'center',
+  fontWeight: 'bold',
+  zIndex: 1,
+  padding: 6,
+});
 
 export const ControlsWrapper = css({
-  marginRight: 5,
+  alignItems: 'center',
   alignSelf: 'flex-end',
   display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
   height: '100%',
+  justifyContent: 'center',
+  marginRight: 5,
 });
 
 export const Control = css({
-  padding: 25,
   backgroundColor: colors.white,
+  color: colors.blue120,
   cursor: 'pointer',
   fontSize: 25,
-  color: colors.blue120,
+  padding: 25,
   '&:hover': {
-    color: colors.white,
     backgroundColor: colors.blue100,
+    color: colors.white,
   },
 });
 

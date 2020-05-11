@@ -1,10 +1,11 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import { useRef, useEffect, useCallback, useContext } from 'react';
+import { useRef, useEffect, useCallback, useContext, useState } from 'react';
 import Track from 'components/Track';
 import Content from 'components/Content';
 import * as Styles from './index.styles';
 import { getTracks } from 'utils/urls';
+import formatTime from 'utils/formatTime';
 import AppContext from 'context/appContext';
 
 /**
@@ -13,43 +14,67 @@ import AppContext from 'context/appContext';
 function Player() {
   const audioEl = useRef(null);
   const { actions, appState } = useContext(AppContext);
-  const { play, pause, loading, setTracks, setTrackPosition } = actions;
-  const { trackPosition, currentTrack } = appState;
+  const {
+    play,
+    pause,
+    loading,
+    setTracks,
+    setTrackPosition,
+    setAutoPlay,
+  } = actions;
+  const { trackPosition, currentTrack, autoPlay } = appState;
+  const [totalTime, setTotalTime] = useState({
+    totalFormatTime: '',
+    totalTimeInSeconds: 0,
+  });
+  const [currentTime, setCurrentTime] = useState({
+    currentFormatTime: '',
+    currentTimeInSeconds: 0,
+  });
 
   useEffect(() => {
-    // loading();
     getTracks().then((data) => {
       setTracks(data);
     });
   }, []);
 
-  /**
-   * @param  {} (
-   */
   const handleOnCanPlay = useCallback(() => {
-    console.log('can play');
-  }, []);
+    const { duration } = audioEl.current;
+    const trackDuration = formatTime(duration);
+    if (autoPlay) {
+      audioEl.current.play();
+      setAutoPlay(false);
+    }
+    setTotalTime({
+      totalFormatTime: trackDuration,
+      totalTimeInSeconds: duration,
+    });
+  }, [totalTime, autoPlay]);
 
-  /**
-   * @param  {} (
-   */
   const handleOnPlaying = useCallback(() => {
     play();
   }, []);
 
-  /**
-   * @param  {} (
-   */
   const handleOnPause = useCallback(() => {
     pause();
   }, []);
 
-  /**
-   * @param  {} (
-   */
   const handleOnEnded = useCallback(() => {
     setTrackPosition(trackPosition + 1);
   }, [trackPosition]);
+
+  const handleOnTimeUpdate = useCallback(() => {
+    const { currentTime: time } = audioEl.current;
+    const trackCurrentTime = formatTime(time);
+    setCurrentTime({
+      currentFormatTime: trackCurrentTime,
+      currentTimeInSeconds: time,
+    });
+  }, [currentTime]);
+
+  const handleOnWaiting = useCallback(() => {
+    loading();
+  }, []);
 
   return (
     <div css={Styles.Content}>
@@ -63,8 +88,15 @@ function Player() {
         onCanPlay={handleOnCanPlay}
         onEnded={handleOnEnded}
         onError={() => {}}
+        onTimeUpdate={handleOnTimeUpdate}
+        onWaiting={handleOnWaiting}
       />
-      <Track audioEl={audioEl} />
+      <Track
+        audioEl={audioEl}
+        totalTime={totalTime}
+        currentTime={currentTime}
+        setCurrentTime={setCurrentTime}
+      />
       <Content audioEl={audioEl} />
     </div>
   );

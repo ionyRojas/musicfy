@@ -13,6 +13,7 @@ export const initialState = {
   tracks: [],
   trackPosition: 0,
   currentTrack: {},
+  autoPlay: false,
 };
 
 // types
@@ -23,6 +24,7 @@ const ERROR = 'ERROR';
 const SET_SONGS = 'SET_SONGS';
 const SET_TRACK_POSITION = 'SET_TRACK_POSITION';
 const SET_CURRENT_TRACK = 'SET_CURRENT_TRACK';
+const AUTO_PLAY = 'AUTO_PLAY';
 
 /**
  * Reducer who's transforms the information of the global context state
@@ -56,6 +58,8 @@ export function appReducer(state, action) {
       };
     case SET_CURRENT_TRACK:
       return { ...state, currentTrack: payload.currentTrack };
+    case AUTO_PLAY:
+      return { ...state, autoPlay: payload.autoPlay };
     default:
       return state;
   }
@@ -76,4 +80,6 @@ export const actions = (dispatch) => ({
     dispatch({ type: SET_TRACK_POSITION, payload: { position } }),
   setCurrentTrack: (currentTrack) =>
     dispatch({ type: SET_CURRENT_TRACK, payload: { currentTrack } }),
+  setAutoPlay: (autoPlay) =>
+    dispatch({ type: AUTO_PLAY, payload: { autoPlay } }),
 });
