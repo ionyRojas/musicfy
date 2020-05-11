@@ -1,9 +1,9 @@
 import { css } from '@emotion/core';
 
 export const Content = css({
-  zIndex: 2,
-  position: 'relative',
-  width: '90%',
   height: 100,
+  position: 'relative',
   transform: 'translateY(50%)',
+  width: '90%',
+  zIndex: 2,
 });

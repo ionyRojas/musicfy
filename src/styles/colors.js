@@ -9,9 +9,6 @@ export const colors = {
   green120: '#80D0C7',
   grey: '#acaebd',
   grey20: '#656565',
+  grey40: '#3b3d50',
   white: '#ffffff',
 };
-
-export const keyColors = Object.keys(colors).reduce((accum, current) => {
-  return { ...accum, [current]: current };
-}, {});
